@@ -22,7 +22,6 @@ function Index (data) {
               <div className='row'> 
                 {placesFormatted}
               </div>
-              
           </main>
       </Def>
   )
