@@ -1,7 +1,6 @@
 require('dotenv').config()
 
 const express = require('express')
-// const home = require('./views/home')
 const app = express()
 
 app.set('views', __dirname + '/views')
