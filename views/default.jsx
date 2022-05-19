@@ -7,7 +7,7 @@ function Def(html) {
                 <title>The Title is here</title>
                 <link rel="stylesheet" href="/style.css" />
             </head>
-            <body>
+            <body className='container'>
                 {html.children}
             </body>
         </html>
