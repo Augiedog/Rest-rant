@@ -76,7 +76,7 @@ function NewForm() {
                         <label htmlFor="cuisines">Cuisines</label>
                         <input className='form-control' type="text" id='cuisines' name='cuisines' />
                     </div>
-                    <button>Add Place</button>
+                    <button className='btn-primary'>Add Place</button>
                 </form>
             </main>
         </Def>
