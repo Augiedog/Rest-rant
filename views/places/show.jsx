@@ -7,7 +7,7 @@ function Show(data) {
             <main>
                 <h1>{ data.place.name } </h1>
                 <p>Currently unrated</p>
-                <form method='POST' action={`/places/${data.id}`}?_method=DELETE ></form>
+                <form method='POST' action={`/places/${data.id}?_method=DELETE` }></form>
             </main>
         </Def>
     )
