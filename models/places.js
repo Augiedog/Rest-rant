@@ -1,13 +1,13 @@
 module.exports = [{
-    name: 'Seared Tuna w/ Rice pilaf',
+    name: 'SeaFish Grill',
     city: 'Seattle',
     state: 'WA',
-    cuisines: 'Thai, Pan-Asian',
+    cuisines: 'Seared Tuna w/ Rice pilaf',
     pic: 'images/IMG_20190613_203457191_HDR.jpg'
 }, {
-    name: 'Fra Diavolo Sauce With Pasta',
-    city: 'Phoenix',
-    state: 'AZ',
-    cuisines: 'Coffee, Bakery',
+    name: 'Mario\'s',
+    city: 'lost',
+    state: 'WI',
+    cuisines: 'Fra Diavolo Sauce With Pasta',
     pic: 'images/IMG_20210206_210238812.jpg'
 }]
