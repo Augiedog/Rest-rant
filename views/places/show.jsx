@@ -1,7 +1,7 @@
 const React = require('react')
 const Def = require('../default')
 
-function Show(data) {
+function Show(data, index) {
     return (
         <Def>
             <main className='row'>
@@ -16,7 +16,10 @@ function Show(data) {
                 <div>
                    <h2>Comments</h2> 
                 </div>
-                <form method='POST' action={`/places/${data.id}?_method=DELETE` }></form>
+                <a href={`/places/${index}/edit`}><button className='btn btn-info'>Edit</button></a>
+                <form method='POST' action={`/places/${data.id}?_method=DELETE`}>
+                    <input className='btn btn-danger' type="submit" value="DELETE" />
+                </form>
             </main>
         </Def>
     )

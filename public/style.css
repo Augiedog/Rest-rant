@@ -24,7 +24,7 @@ nav a {
   font-size: 1.5em;
 }
 nav a:hover {
-  color: pink;
+  color: blue;
   text-decoration: none;
 }
 h1 {
