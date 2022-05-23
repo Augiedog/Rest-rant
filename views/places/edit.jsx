@@ -17,16 +17,10 @@ function edit_form (data) {
                             value={data.place.name} 
                         required />
                         <label htmlFor="Image">Image</label>
-                        <input 
-                            type="text"
-                            name='image'
-                            id='image'
+                        <input type="text" name='image' id='image'
                         defaultValue={data.place.pic} />
                         <label htmlFor="city">City</label>
-                        <input 
-                            type="text"
-                            name='city'
-                            id='city'
+                        <input type="text" name='city' id='city'
                         defaultValue={data.place.city} />
                         <label htmlFor="State">State</label>
                         <input type="text" name="state" id="state"

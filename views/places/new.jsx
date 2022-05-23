@@ -8,7 +8,7 @@ function NewForm() {
                 <form method="Post" action="/places">
                     <div className='form-group'>
                         <label htmlFor="name">Place Name</label>
-                        <input className='form-control' type="text" id='name' name='name' />
+                        <input className='form-control' type="text" id='name' name='name' required/>
                     </div>
                     <div className='form-group'>
                         <label htmlFor="pic">Place Picture</label>
