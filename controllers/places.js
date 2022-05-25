@@ -60,7 +60,7 @@ router.delete('/:id', (req, res) => {
 router.get('/:id/edit', (req, res) => {
   let id = Number(req.params.id)
   if (isNaN(id)) {
-    console.log(id)
+    console.log('why?', id)
     res.render('error404')
   } else if (!places[id]) {
     console.log(id)
