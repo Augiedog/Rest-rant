@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   if (!req.body.pic) {
     // Default image if one is not provided
-    req.body.pic = 'images/IMG_20191125_184836031.jpg'
+    req.body.pic = './public/images/IMG_20191125_184836031.jpg'
   }
   if (!req.body.city) {
     req.body.city = 'Anytown'
@@ -45,7 +45,6 @@ router.get('/places/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   let id = Number(req.params.id)
-  console.log("hello")
   if (isNaN(id)) {
     res.render('error404')
   }
@@ -61,11 +60,13 @@ router.delete('/:id', (req, res) => {
 router.get('/:id/edit', (req, res) => {
   let id = Number(req.params.id)
   if (isNaN(id)) {
+    console.log(id)
     res.render('error404')
   } else if (!places[id]) {
+    console.log(id)
     res.render('error404')
   } else {
-    res.render('edit', { place: places[id], id })
+    res.render('places/edit', { place: places[id] })
   }
 })
 
