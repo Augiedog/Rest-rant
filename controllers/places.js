@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const places = require('../models/places.js')
+//const Places = require('../models/places.js')
 
 router.get('/', (req, res) => {
     res.render('places/index', { places })
@@ -23,7 +24,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   if (!req.body.pic) {
     // Default image if one is not provided
-    req.body.pic = './public/images/IMG_20191125_184836031.jpg'
+    req.body.pic = "./public/images/IMG_20191125_184836031.jpg"
   }
   if (!req.body.city) {
     req.body.city = 'Anytown'
@@ -36,10 +37,10 @@ router.post('/', (req, res) => {
 })
 
 router.get('/places/:id', (req, res) => {
-  const { arrayIndex } = req.params.id
+  const { id } = req.params.id
   res.render('show', {
-    places: Places[arrayIndex],
-    index: arrayIndex
+    places: places[id],
+    index: id
   })
 })
 
@@ -58,16 +59,24 @@ router.delete('/:id', (req, res) => {
 })
 
 router.get('/:id/edit', (req, res) => {
-  let id = Number(req.params.id)
+  const id = Number(req.params.id)
   if (isNaN(id)) {
-    console.log('why?', id)
+    console.log("why?", id)
     res.render('error404')
   } else if (!places[id]) {
     console.log(id)
     res.render('error404')
   } else {
-    res.render('places/edit', { place: places[id] })
+    res.render('places/edit', { place: places[id], id })
   }
+})
+
+router.put('/id', (req, res) => {
+  const id = req.params
+    res.render('edit', {
+      places: places[id],
+      index: id
+    })
 })
 
 module.exports = router
