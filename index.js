@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const express = require('express')
 const app = express()
+const mongoose = require('mongoose')
 const placesController = require('./controllers/places')
 const methodOverride = require('method-override')
 
@@ -23,6 +24,11 @@ app.get('/', (req, res) => {
 app.get('*', (req, res) => {
     res.render('error404')
 })
+
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true})
+    .then(() => console.log('DB connected'))
+    .catch(err => console.error(err));
+//module.exports.Place = require('./places')
 
 // Listener
 const PORT = process.env.PORT

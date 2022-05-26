@@ -1,9 +1,22 @@
 const router = require('express').Router()
-const places = require('../models/places.js')
-//const Places = require('../models/places.js')
+//const places = require('../models/places.js')
+const Places = require('../models/places.js')
 
-router.get('/', (req, res) => {
-    res.render('places/index', { places })
+router.get('/', async (req, res) => {
+  try {
+    const place = await Places.find()
+    res.render('index', {
+      place: Places,
+      name: 'name',
+      city: 'city',
+      state: 'state',
+      cuisines: 'cuisines',
+      pic: 'pic'
+    })
+  } catch (error) {
+    console.log(error)
+    res.render('error404')
+  }
 })
 
 router.get('/new', (req, res) => {
