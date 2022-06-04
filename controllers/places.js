@@ -1,12 +1,15 @@
 const router = require('express').Router()
 //const places = require('../models/places.js')
 const Places = require('../models/places.js')
+const oldPlaces = require('../models/old_places.js')
 
+// INDEX page
 router.get('/', async (req, res) => {
   try {
-    const place = await Places.find()
+    const places = await Places.find()
+    //Right here is a problem
     res.render('index', {
-      place: Places,
+      place: places,
       name: 'name',
       city: 'city',
       state: 'state',
@@ -19,19 +22,37 @@ router.get('/', async (req, res) => {
   }
 })
 
+// Add new Place page
 router.get('/new', (req, res) => {
   res.render('places/new')
 })
 
-router.get('/:id', (req, res) => {
-  let id = Number(req.params.id)
-  if (isNaN(id)) {
+// Seed DB
+router.get('/seed', async (req, res) => {
+  try {
+    await Places.insertMany(oldPlaces)
+    res.redirect('./')
+  } catch (error) {
+    console.log(error)
     res.render('error404')
-  } else if (!places[id]) {cd 
+  }
+})
+
+// Show page 
+router.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    const places = await Places.findById(id)
+    .populate('places')
+    .then(foundPlaces => {
+      res.render('index', {
+        places: foundPlaces
+      })
+    })
+  } catch (error) {
+    console.log(error)
     res.render('error404')
-  } else {
-    res.render('places/show', { place: places[id], id })
-  }  
+  }
 })
 
 router.post('/', (req, res) => {
@@ -45,14 +66,14 @@ router.post('/', (req, res) => {
   if (!req.body.state) {
     req.body.state = 'USA'
   }
-  places.push(req.body)
+  Places.push(req.body)
   res.redirect('/places')
 })
 
 router.get('/places/:id', (req, res) => {
   const { id } = req.params.id
   res.render('show', {
-    places: places[id],
+    places: Places[id],
     index: id
   })
 })
@@ -62,11 +83,11 @@ router.delete('/:id', (req, res) => {
   if (isNaN(id)) {
     res.render('error404')
   }
-  else if (!places[id]) {
+  else if (!Places[id]) {
     res.render('error404')
   }
   else {
-    places.splice(id, 1)
+    Places.splice(id, 1)
     res.redirect('/places')
   }
 })
@@ -76,18 +97,18 @@ router.get('/:id/edit', (req, res) => {
   if (isNaN(id)) {
     console.log("why?", id)
     res.render('error404')
-  } else if (!places[id]) {
+  } else if (!Places[id]) {
     console.log(id)
     res.render('error404')
   } else {
-    res.render('places/edit', { place: places[id], id })
+    res.render('places/edit', { place: Places[id], id })
   }
 })
 
 router.put('/id', (req, res) => {
   const id = req.params
     res.render('edit', {
-      places: places[id],
+      places: Places[id],
       index: id
     })
 })
