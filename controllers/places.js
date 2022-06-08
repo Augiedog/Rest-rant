@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
   try {
     const places = await Places.find()
     //Right here is a problem
-    res.render('index', {
+    res.render('places/index', {
       place: places,
       name: 'name',
       city: 'city',
@@ -54,20 +54,25 @@ router.get('/:id', async (req, res) => {
     res.render('error404')
   }
 })
-
-router.post('/', (req, res) => {
-  if (!req.body.pic) {
+//New 
+router.post('/', async (req, res) => {
+  try {
+    if (!req.body.pic) {
     // Default image if one is not provided
-    req.body.pic = "./public/images/IMG_20191125_184836031.jpg"
-  }
-  if (!req.body.city) {
-    req.body.city = 'Anytown'
-  }
-  if (!req.body.state) {
-    req.body.state = 'USA'
-  }
-  Places.push(req.body)
-  res.redirect('/places')
+      req.body.pic = "./public/images/IMG_20191125_184836031.jpg"
+    }
+    if (!req.body.city) {
+      req.body.city = 'Anytown'
+    }
+    if (!req.body.state) {
+      req.body.state = 'USA'
+    }
+    await Places.create(req.body)
+    res.redirect('/places')
+  } catch (error) {
+      console.log(error)
+      res.render('error404')
+  } 
 })
 
 router.get('/places/:id', (req, res) => {
