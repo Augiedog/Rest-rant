@@ -1,6 +1,7 @@
 const React = require('react')
 const Def = require('../default')
 function Index( data ) {
+  // Having issues with this map
     const dplace = data.place
     let placesFormatted = dplace.map((place, index) => {
       return (
