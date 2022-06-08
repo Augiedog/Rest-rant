@@ -1,13 +1,12 @@
 const React = require('react')
 const Def = require('../default')
 function Index( data ) {
-  // Having issues with this map
     const dplace = data.place
-    let placesFormatted = dplace.map((place, index) => {
+    let placesFormatted = dplace.map((place) => {
       return (
         <div className='col-sm-6'>
           <h2>
-            <a href={`/places/${index}`}>{place.name}</a>
+            <a href={`/places/${place._id}`}>{place.name}</a>
           </h2>
           <p className='text-center'>
             {place.cuisines}
