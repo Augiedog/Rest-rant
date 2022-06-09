@@ -7,7 +7,6 @@ const oldPlaces = require('../models/old_places.js')
 router.get('/', async (req, res) => {
   try {
     const places = await Places.find()
-    //Right here is a problem
     res.render('places/index', {
       place: places,
       name: 'name',
@@ -45,7 +44,7 @@ router.get('/:id', async (req, res) => {
     const places = await Places.findById(id)
     .populate('places')
     .then(foundPlaces => {
-      res.render('index', {
+      res.render('places/show', {
         places: foundPlaces
       })
     })
@@ -59,7 +58,7 @@ router.post('/', async (req, res) => {
   try {
     if (!req.body.pic) {
     // Default image if one is not provided
-      req.body.pic = "./public/images/IMG_20191125_184836031.jpg"
+      req.body.pic = "/images/IMG_20191125_184836031.jpg"
     }
     if (!req.body.city) {
       req.body.city = 'Anytown'

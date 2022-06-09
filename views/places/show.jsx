@@ -1,8 +1,7 @@
 const React = require('react')
 const Def = require('../default')
 
-// Here is the new problem
-function Show(data) {
+function Show( data ) {
     return (
         <Def>
             <main className='row'>
@@ -17,7 +16,7 @@ function Show(data) {
                 <div>
                    <h2>Comments</h2> 
                 </div>
-                <a href={`/places/${data.id}/edit`}><button className='btn btn-info'>Edit</button></a>
+                <a href={`/places/${data._id}/edit`}><button className='btn btn-info'>Edit</button></a>
                 <form method='POST' action={`/places/${data._id}?_method=DELETE`}>
                     <input className='btn btn-danger' type="submit" value="DELETE" />
                 </form>
