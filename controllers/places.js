@@ -40,17 +40,25 @@ router.get('/seed', async (req, res) => {
 // Show page 
 router.get('/:id', async (req, res) => {
   try {
-    const { id } = req.params
-    const places = await Places.findById(id)
-    // something is wrong with here
-    .populate('places').exec((err, places) => {
-      console.log(places)
+    const places = await Places.find()
+    res.render('places/show', {
+      place: places,
+      name: 'name',
+      city: 'city',
+      state: 'state',
+      cuisines: 'cuisines',
+      pic: 'pic'
     })
-    .then(foundPlaces => {
-      res.render('show', {
-        places: foundPlaces
-      })
-    })
+  // try {
+  //   const { id } = req.params
+  //   const places = await Places.findById(id)
+  //   // something is wrong with here
+  //   .populate('places')
+  //   .then(foundPlaces => {
+  //     res.render('show', {
+  //       places: foundPlaces
+  //     })
+  //   })
   } catch (error) {
     console.log(error)
     res.render('error404')

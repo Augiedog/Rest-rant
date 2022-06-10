@@ -2,11 +2,12 @@ const React = require('react')
 const Def = require('../default')
 
 function Show( data ) {
+    const dplace = data.place
     return (
         <Def>
             <main className='row'>
-                <div className='col-md'><img src={data.place.pic} alt={data.place.name}></img></div>
-                <h1>{ data.place.name } </h1>
+                <div className='col-md'><img src={dplace._id} alt={dplace.name}></img></div>
+                <h1>{ dplace.name } </h1>
                 <div className='col-sm'>
                     <h2>Rating</h2>
                     <p>Currently Unrated</p>
