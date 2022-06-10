@@ -42,9 +42,12 @@ router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params
     const places = await Places.findById(id)
-    .populate('places')
+    // something is wrong with here
+    .populate('places').exec((err, places) => {
+      console.log(places)
+    })
     .then(foundPlaces => {
-      res.render('places/show', {
+      res.render('show', {
         places: foundPlaces
       })
     })
