@@ -102,32 +102,15 @@ router.delete('/:id', async (req, res) => {
     console.log(error)
     res.render('error404')
   }
-  // let id = Number(req.params.id)
-  // if (isNaN(id)) {
-  //   res.render('error404')
-  // }
-  // else if (!Places[id]) {
-  //   res.render('error404')
-  // }
-  // else {
-  //   Places.splice(id, 1)
-  //   res.redirect('/places')
-  // }
 })
 
-router.get('/:id/edit', (req, res) => {
-  const id = Number(req.params.id)
-  if (isNaN(id)) {
-    console.log("why?", id)
-    res.render('error404')
-  } else if (!Places[id]) {
-    console.log(id)
-    res.render('error404')
-  } else {
-    res.render('places/edit', { place: Places[id], id })
-  }
+// GET edit page
+router.get('/:id/edit', async (req, res) => {
+  const { id } = req.params
+  const places = await Places.findById(id).populate('places')
+  res.render('places/edit', { places })
 })
-
+// PUT update from edit page
 router.put('/id', (req, res) => {
   const id = req.params
     res.render('edit', {

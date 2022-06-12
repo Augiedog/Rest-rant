@@ -2,10 +2,11 @@ const React = require('react')
 const Def = require('../default.jsx')
 
 function edit_form (data) {
+    const dplace = data.places
     return (
         <Def>
             <h1>Edit Place</h1>
-            <form method="POST" action={`/places/${data.id}?_method=PUT`}>
+            <form method="POST" action={`/places/${dplace._id}?_method=PUT`}>
                 <div className="row">
                     <div className='form-group col-sm-6'>  
                         <label htmlFor="name">Place Name</label>
@@ -13,20 +14,20 @@ function edit_form (data) {
                             className="form-control" 
                             id="name" 
                             name="name" 
-                            value={data.place.name} 
+                            value={dplace.name} 
                         required />
                         <label htmlFor="Image">Image</label>
                         <input type="text" name='image' id='image'
-                        defaultValue={data.place.pic} />
+                        defaultValue={dplace.pic} />
                         <label htmlFor="city">City</label>
                         <input type="text" name='city' id='city'
-                        defaultValue={data.place.city} />
+                        defaultValue={dplace.city} />
                         <label htmlFor="State">State</label>
                         <input type="text" name="state" id="state"
-                        defaultValue={data.place.state} />
+                        defaultValue={dplace.state} />
                         <label htmlFor="cuisines">Cuisines</label>
                         <input type="text" name='cuisines' id='cuisines'
-                        defaultValue={data.place.cuisines} />
+                        defaultValue={dplace.cuisines} />
                     </div>
                     <input type="submit" />
                 </div>
