@@ -39,26 +39,26 @@ router.get('/seed', async (req, res) => {
 
 // Show page 
 router.get('/:id', async (req, res) => {
-  try {
-    const places = await Places.find()
-    res.render('places/show', {
-      place: places,
-      name: 'name',
-      city: 'city',
-      state: 'state',
-      cuisines: 'cuisines',
-      pic: 'pic'
-    })
   // try {
-  //   const { id } = req.params
-  //   const places = await Places.findById(id)
-  //   // something is wrong with here
-  //   .populate('places')
-  //   .then(foundPlaces => {
-  //     res.render('show', {
-  //       places: foundPlaces
-  //     })
+  //   const places = await Places.find()
+  //   res.render('places/show', {
+  //     place: places,
+  //     name: 'name',
+  //     city: 'city',
+  //     state: 'state',
+  //     cuisines: 'cuisines',
+  //     pic: 'pic'
   //   })
+  try {
+    const { id } = req.params
+    const places = await Places.findById(id)
+    // something is wrong with here
+    .populate('places')
+    .then(foundPlaces => {
+      res.render('places/show', {
+        places: foundPlaces
+      })
+    })
   } catch (error) {
     console.log(error)
     res.render('error404')
@@ -93,18 +93,26 @@ router.get('/places/:id', (req, res) => {
   })
 })
 
-router.delete('/:id', (req, res) => {
-  let id = Number(req.params.id)
-  if (isNaN(id)) {
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    await Places.findByIdAndDelete(id)
+    res.status(303).render("home")
+  } catch (error) {
+    console.log(error)
     res.render('error404')
   }
-  else if (!Places[id]) {
-    res.render('error404')
-  }
-  else {
-    Places.splice(id, 1)
-    res.redirect('/places')
-  }
+  // let id = Number(req.params.id)
+  // if (isNaN(id)) {
+  //   res.render('error404')
+  // }
+  // else if (!Places[id]) {
+  //   res.render('error404')
+  // }
+  // else {
+  //   Places.splice(id, 1)
+  //   res.redirect('/places')
+  // }
 })
 
 router.get('/:id/edit', (req, res) => {
