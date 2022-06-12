@@ -1,7 +1,7 @@
 const React = require('react')
 const Def = require('../default.jsx')
 
-function edit_form (data) {
+function edit_form( data ) {
     const dplace = data.places
     return (
         <Def>

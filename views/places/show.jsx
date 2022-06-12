@@ -4,7 +4,7 @@ const Def = require('../default')
 function Show( data ) {
     const dplace = data.places
     return (
-        <Def>
+        <Def title={data._id}>
             <main className='row'>
                 <div className='col-md'><img src={dplace.pic} alt={dplace.name}></img></div>
                 <h1>{ dplace.name } </h1>
