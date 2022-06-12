@@ -111,12 +111,15 @@ router.get('/:id/edit', async (req, res) => {
   res.render('places/edit', { places })
 })
 // PUT update from edit page
-router.put('/id', (req, res) => {
-  const id = req.params
-    res.render('edit', {
-      places: Places[id],
-      index: id
-    })
+router.put('/id', async (req, res) => {
+  try {
+    const { id } = req.params
+    await Places.findByIdAndUpdate(id, req.body)
+    res.redirect(`places/${id}`)
+  } catch (error) {
+    console.log(error)
+    res.render('error404')
+  }
 })
 
 module.exports = router

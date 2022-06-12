@@ -5,7 +5,7 @@ function edit_form (data) {
     const dplace = data.places
     return (
         <Def>
-            <h1>Edit Place</h1>
+            <h1>Edit {dplace.name}</h1>
             <form method="POST" action={`/places/${dplace._id}?_method=PUT`}>
                 <div className="row">
                     <div className='form-group col-sm-6'>  
