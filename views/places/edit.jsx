@@ -8,10 +8,10 @@ function edit_form( data ) {
             <h1>Edit {dplace.name}</h1>
             <form method="POST" action={`/places/${dplace._id}?_method=PUT`}>
                 <div className="row">
-                    <div className='form-group col-sm-6'>  
+                    <div className='form-group col-sm-6'>
                         <label htmlFor="name">Place Name</label>
-                        <input 
-                            className="form-control" 
+                        <input
+                            className="form-control"
                             id="name" 
                             name="name" 
                             value={dplace.name} 
