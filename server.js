@@ -4,6 +4,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const placesController = require('./controllers/places')
+const commentController = require('./controllers/comment')
 const methodOverride = require('method-override')
 
 // Express Settings
@@ -16,6 +17,8 @@ app.use(methodOverride('_method'))
 
 
 app.use('/places', placesController)
+app.use('/comment', commentController)
+
 
 // Routes
 app.get('/', (req, res) => {      

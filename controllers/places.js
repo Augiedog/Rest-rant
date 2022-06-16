@@ -39,20 +39,9 @@ router.get('/seed', async (req, res) => {
 
 // Show page 
 router.get('/:id', async (req, res) => {
-  // try {
-  //   const places = await Places.find()
-  //   res.render('places/show', {
-  //     place: places,
-  //     name: 'name',
-  //     city: 'city',
-  //     state: 'state',
-  //     cuisines: 'cuisines',
-  //     pic: 'pic'
-  //   })
   try {
     const { id } = req.params
     const places = await Places.findById(id)
-    // something is wrong with here
     .populate('places')
     .then(foundPlaces => {
       res.render('places/show', {
@@ -110,12 +99,13 @@ router.get('/:id/edit', async (req, res) => {
   const places = await Places.findById(id).populate('places')
   res.render('places/edit', { places })
 })
+
 // PUT update from edit page
-router.put('/id', async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const { id } = req.params
     await Places.findByIdAndUpdate(id, req.body)
-    res.redirect(`places/${id}`)
+    res.redirect(`/places/${id}`)
   } catch (error) {
     console.log(error)
     res.render('error404')
