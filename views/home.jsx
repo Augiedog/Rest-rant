@@ -2,7 +2,7 @@ const React = require('react')
 const Def = require('./default')
 function Home() {
     return (
-        <Def>
+        <Def title='Home'>
             <main>
                 <h1>Home page</h1>
                 <div>

@@ -43,7 +43,9 @@ router.get('/:id', async (req, res) => {
     const { id } = req.params
     const places = await Places.findById(id)
     .populate('places')
+    .populate('comment')
     .then(foundPlaces => {
+      console.log(places.comment)
       res.render('places/show', {
         places: foundPlaces
       })
